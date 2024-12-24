@@ -54,6 +54,7 @@ const Gallery = () => {
       ...prevCache,
       [page]: newCats,
     }));
+
     setLoading(false);
   };
 
@@ -69,34 +70,19 @@ const Gallery = () => {
 
   return (
     <Container>
-      <Box sx={{ mt: 4 }}>
+      <Box>
         <Grid container spacing={2}>
           {catsCache[page]?.map((cat: any) => (
             <Grid item xs={12} sm={6} md={4} key={cat.id}>
-              <Card
-                onClick={() => handleCardClick(cat.id)}
-                sx={{
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: 6,
-                  },
-                  borderRadius: 2,
-                }}
-              >
+              <Card onClick={() => handleCardClick(cat.id)}>
                 <CardMedia
                   component="img"
                   alt="Cat"
                   height="300"
                   image={cat.url}
                   title="Cat Image"
-                  sx={{
-                    borderTopLeftRadius: 2,
-                    borderTopRightRadius: 2,
-                    objectFit: "cover",
-                  }}
                 />
-                <CardContent sx={{ p: 2 }}>
+                <CardContent>
                   <Typography variant="h6" component="div">
                     Cat ID: {cat.id}
                   </Typography>
@@ -118,13 +104,12 @@ const Gallery = () => {
               height: "100vh",
             }}
           >
-            <CircularProgress size={60} color="primary" />
+            <CircularProgress />
           </Box>
         )}
-
-        <Box sx={{ display: "flex", justifyContent: "center", marginTop: 4 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
           <Pagination
-            count={totalPages}
+            count={totalPages} // Using memoized totalPages value
             page={page}
             onChange={handlePaginationChange}
             color="primary"
@@ -132,12 +117,6 @@ const Gallery = () => {
             boundaryCount={1}
             showFirstButton
             showLastButton
-            sx={{
-              "& .MuiPaginationItem-root": {
-                fontSize: "1rem",
-                fontWeight: "bold",
-              },
-            }}
           />
         </Box>
       </Box>
