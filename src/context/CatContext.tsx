@@ -3,8 +3,7 @@ import React, { createContext, useState, useContext } from "react";
 const CatContext = createContext<any>(undefined);
 
 export const useCatContext = () => {
-  const context = useContext(CatContext);
-  return context;
+ return useContext(CatContext);
 };
 
 export const CatProvider = (props: { children: any }) => {
