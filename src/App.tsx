@@ -1,14 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Catlist } from './components/Catlist';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { CatProvider } from "./context/CatContext";
+import Gallery from "./components/Gallery";
+import CatDetails from "./components/CatDetails";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <>
-    <Catlist />
-    </>
+    <CatProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Gallery />} />
+          <Route path="/cat/:catId" element={<CatDetails />} />
+        </Routes>
+      </Router>
+    </CatProvider>
   );
-}
+};
 
 export default App;
