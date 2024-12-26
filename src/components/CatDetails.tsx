@@ -15,23 +15,24 @@ const CatDetails = () => {
   const { catId } = useParams();
   const { catsCache } = useCatContext();
   const [cat, setCat] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (catId) {
-      const cachedCat = Object.values(catsCache)
-        .flat()
-        .find((cat: any) => cat.id === catId);
+      const cachedCat = catsCache.flat().find((cat: any) => cat.id === catId);
       if (cachedCat) {
         setCat(cachedCat);
+        setLoading(false);
+      } else {
+        setLoading(false);
       }
     }
   }, [catId, catsCache]);
 
-  if (!cat) {
-    return <Typography>Loading...</Typography>; 
+  if (loading) {
+    return <Typography>Loading...</Typography>;
   }
-
   return (
     <Container maxWidth="sm">
       <Box

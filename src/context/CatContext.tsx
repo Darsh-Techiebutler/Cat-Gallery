@@ -1,17 +1,19 @@
 import React, { createContext, useState, useContext } from "react";
 
-const CatContext = createContext<any>(undefined);
+const CatContext = createContext({
+  catsCache: [] as any[],
+  setCatsCache: (catsCache: any[]) => {},
+});
 
 export const useCatContext = () => {
  return useContext(CatContext);
 };
 
 export const CatProvider = (props: { children: any }) => {
-  const [cats, setCats] = useState([]);
-  const [catsCache, setCatsCache] = useState({});
+  const [catsCache, setCatsCache] = useState<any[]>([]);
 
   return (
-    <CatContext.Provider value={{ cats, setCats, catsCache, setCatsCache }}>
+    <CatContext.Provider value={{ catsCache, setCatsCache }}>
       {props.children}
     </CatContext.Provider>
   );
