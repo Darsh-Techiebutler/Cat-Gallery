@@ -9,7 +9,7 @@ export const useCatContext = () => {
  return useContext(CatContext);
 };
 
-export const CatProvider = (props: { children: any }) => {
+export const CatProvider = (props:any) => {
   const [catsCache, setCatsCache] = useState<any>([]);
 
   return (
