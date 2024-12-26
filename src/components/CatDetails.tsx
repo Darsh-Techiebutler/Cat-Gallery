@@ -20,13 +20,14 @@ const CatDetails = () => {
 
   useEffect(() => {
     if (catId) {
-      const cachedCat = catsCache.flat().find((cat: any) => cat.id === catId);
-      if (cachedCat) {
-        setCat(cachedCat);
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
+      let foundCat: any;
+      catsCache.forEach((indvcat) => {
+        if (!foundCat) {
+          foundCat = indvcat.data.find((cat:any) => cat.id === catId);
+        }
+      });
+      setCat(foundCat);
+      setLoading(false);
     }
   }, [catId, catsCache]);
 

@@ -60,9 +60,9 @@ const Gallery = () => {
     }
   }, [page, catsCache, setCatsCache]);
 
-  useEffect(() => {
-    console.log("Updated catsCache:", catsCache);
-  }, [catsCache]);
+  // useEffect(() => {
+  //   console.log("Updated catsCache:", catsCache);
+  // }, [catsCache]);
 
   const handlePaginationChange = (event: any, value: number) => {
     setPage(value);

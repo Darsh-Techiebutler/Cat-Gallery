@@ -10,7 +10,7 @@ export const useCatContext = () => {
 };
 
 export const CatProvider = (props: { children: any }) => {
-  const [catsCache, setCatsCache] = useState<any[]>([]);
+  const [catsCache, setCatsCache] = useState<any>([]);
 
   return (
     <CatContext.Provider value={{ catsCache, setCatsCache }}>
