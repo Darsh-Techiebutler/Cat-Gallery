@@ -28,6 +28,13 @@ const Gallery = () => {
     }
   }, [location]);
 
+  const handlePaginationChange = (event: any, value: number) => {
+    setPage(value);
+    const url = new URL(window.location.href);
+    url.searchParams.set("page", value.toString());
+    window.history.pushState({}, "", url.toString());
+  };
+
   const cachedCats = useMemo(() => {
     return catsCache.find((cache: any) => cache.page === page);
   }, [page, catsCache]);
@@ -63,13 +70,6 @@ const Gallery = () => {
   // useEffect(() => {
   //   console.log("Updated catsCache:", catsCache);
   // }, [catsCache]);
-
-  const handlePaginationChange = (event: any, value: number) => {
-    setPage(value);
-    const url = new URL(window.location.href);
-    url.searchParams.set("page", value.toString());
-    window.history.pushState({}, "", url.toString());
-  };
 
   const handleCardClick = (catId: any) => {
     navigate(`/cat/${catId}`);

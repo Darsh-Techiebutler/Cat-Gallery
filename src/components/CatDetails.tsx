@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 const CatDetails = () => {
+
   const { catId } = useParams();
   const { catsCache } = useCatContext();
   const [cat, setCat] = useState<any>(null);
@@ -19,16 +20,14 @@ const CatDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (catId) {
-      let foundCat: any;
-      catsCache.forEach((indvcat) => {
-        if (!foundCat) {
-          foundCat = indvcat.data.find((cat:any) => cat.id === catId);
-        }
-      });
-      setCat(foundCat);
-      setLoading(false);
-    }
+    let foundCat: any;
+    catsCache.forEach((indvcat) => {
+      if (!foundCat) {
+        foundCat = indvcat.data.find((cat: any) => cat.id === catId);
+      }
+    });
+    setCat(foundCat);
+    setLoading(false);
   }, [catId, catsCache]);
 
   if (loading) {
