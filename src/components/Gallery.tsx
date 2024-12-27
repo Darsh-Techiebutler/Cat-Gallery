@@ -28,7 +28,7 @@ const Gallery = () => {
     }
   }, [location]);
 
-  const handlePaginationChange = (event: any, value: number) => {
+  const hendelpage = (event: any, value: number) => {
     setPage(value);
     const url = new URL(window.location.href);
     url.searchParams.set("page", value.toString());
@@ -119,7 +119,7 @@ const Gallery = () => {
           <Pagination
             count={10}
             page={page}
-            onChange={handlePaginationChange}
+            onChange={hendelpage}
             color="primary"
           />
         </Box>
